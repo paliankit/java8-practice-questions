@@ -1,7 +1,9 @@
 package com.demo.java8;
 
 import javax.xml.transform.Source;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -119,6 +121,33 @@ public class Main {
 
         List<String> resultList=list.stream().map(String::valueOf).collect(Collectors.toList());
         System.out.println(resultList);
+
+        //just checking method overriding,overloading behaviour
+        AnotherClass anotherClass=new AnotherClass();
+        anotherClass.printThis(1);
+        System.out.println(Constant.THIS_IS_A_CONSTANT);
+
+
+        //thread created using runnable implemenation
+        Thread thread1=new Thread(new RunnableImplementation());
+        thread1.start();
+
+        //we can directly implement run method using lambda expressions
+
+        Thread thread2=new Thread(() -> System.out.println("This is printed from thread created by lambda expression of run method"));
+
+        thread2.start();
+
+
+        //before lambda expresions (pre java8) we use to implement interfaces temporarily using
+        //anonymous classes
+        Thread thread3=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("This is printed from thread created by anonymous implementaion of runnable");
+            }
+        });
+        thread3.start();
 
 
 
